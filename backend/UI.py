@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 from datetime import date, datetime
 
-BASE_URL = "http://127.0.0.1:8000"
+BASE_URL = "https://your-render-url.onrender.com"
 
 st.set_page_config(
     page_title="Spiritual Coach",
