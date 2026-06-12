@@ -367,9 +367,12 @@ with st.sidebar:
 # ═══════════════════════════════════════════════════════════════════════════════
 # DASHBOARD
 # ═══════════════════════════════════════════════════════════════════════════════
-    if page == "🏠  Dashboard":
+  
+if page == "🏠  Dashboard":
+
     # Topbar
     today_str = date.today().strftime("%A, %d %B %Y")
+
     st.markdown(f"""
     <div class="topbar">
         <div>
@@ -387,6 +390,8 @@ with st.sidebar:
         <div class="verse-source">— {DAILY_VERSE[1]}</div>
     </div>
     """, unsafe_allow_html=True)
+
+    # rest of dashboard code...
 
     # Stat cards
     r1 = requests.get(f"{BASE_URL}/sankalp")
