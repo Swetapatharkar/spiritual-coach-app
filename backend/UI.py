@@ -306,6 +306,7 @@ def section_card(title: str, badge: str = ""):
 
 # ─── Sidebar ──────────────────────────────────────────────────────────────────
 with st.sidebar:
+
     st.markdown("""
     <div style="padding: 20px 16px 14px; border-bottom: 0.5px solid rgba(200,168,75,0.15);">
         <div style="font-size: 28px; color: #c8a84b; margin-bottom: 4px;">ॐ</div>
@@ -317,27 +318,47 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     st.markdown("""
-    <div style="padding: 10px 12px 4px; font-size: 9px; text-transform: uppercase;
-                letter-spacing: 0.1em; color: rgba(255,255,255,0.25);">Practice</div>
+    <div style="padding: 10px 12px 4px;
+                font-size: 9px;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                color: rgba(255,255,255,0.25);">
+    Practice
+    </div>
     """, unsafe_allow_html=True)
 
     page = st.radio(
-        "Navigate",
-        ["🏠  Dashboard", "✨  Affirmations", "📖  Journal",
-         "🌅  Morning Routine", "📿  Sankalp", "🙏  Gratitude"],
+        "Navigation",
+        [
+            "🏠  Dashboard",
+            "✨  Affirmations",
+            "📖  Journal",
+            "🌅  Morning Routine",
+            "📿  Sankalp",
+            "🙏  Gratitude"
+        ],
         label_visibility="collapsed"
     )
 
-    # Streak pill in sidebar footer
-    r_streak = requests.get(f"{BASE_URL}/journal/stats/streak")
-    streak = r_streak.json().get("current_streak", 0) if r_streak.status_code == 200 else 0
+    r_streak = requests.get(
+        f"{BASE_URL}/journal/stats/streak"
+    )
+
+    streak = (
+        r_streak.json().get("current_streak", 0)
+        if r_streak.status_code == 200
+        else 0
+    )
+
     st.markdown(f"""
-    <div style="margin-top: auto; padding: 14px 14px 16px;
-                border-top: 0.5px solid rgba(200,168,75,0.1);">
+    <div style="margin-top:20px; padding:14px 14px 16px;
+                border-top:0.5px solid rgba(200,168,75,0.1);">
         <span class="streak-pill">🔥 {streak}-day streak</span>
     </div>
-    <div style="padding: 0 14px 18px; font-size: 11px;
-                color: rgba(200,168,75,0.35); font-family:'Cinzel',serif;">
+    <div style="padding:0 14px 18px;
+                font-size:11px;
+                color:rgba(200,168,75,0.35);
+                font-family:'Cinzel',serif;">
         ॐ नमः शिवाय
     </div>
     """, unsafe_allow_html=True)
@@ -346,7 +367,7 @@ with st.sidebar:
 # ═══════════════════════════════════════════════════════════════════════════════
 # DASHBOARD
 # ═══════════════════════════════════════════════════════════════════════════════
-if page == "🏠  Dashboard":
+    if page == "🏠  Dashboard":
     # Topbar
     today_str = date.today().strftime("%A, %d %B %Y")
     st.markdown(f"""
